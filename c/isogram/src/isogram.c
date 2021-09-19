@@ -17,39 +17,26 @@ bool is_isogram(const char phrase[])
 		return true;
 	}
 
-	char *original = malloc(strlen(phrase) + 1);
-	memcpy(original, phrase, strlen(phrase) + 1);
-	char *duplicate = malloc(strlen(phrase) + 1);
-	memset(duplicate, '\0', strlen(phrase) + 1);
+	int appearances[26];
+	memset(appearances, 0, sizeof(appearances));
 
-	int length = strlen(original);
-
-	for (int i = 0; i < length; ++i)
-	{
-		original[i] = tolower((unsigned char)original[i]);
-	}
+	int length = strlen(phrase);
+	char symbol;
 
 	for (int i = 0; i < length; ++i)
 	{
-		if (!isalpha((unsigned char)original[i]))
+		symbol = tolower((unsigned char)phrase[i]);
+
+		if (!isalpha((unsigned char)symbol))
 		{
-			duplicate[i] = original[i];
 			continue;
 		}
 
-		if (strchr(duplicate, original[i]) != NULL)
+		if (appearances[(int)(symbol - 'a')]++)
 		{
-			free(duplicate);
-			free(original);
 			return false;
-		}
-		else
-		{
-			duplicate[i] = original[i];
 		}
 	}
 
-	free(duplicate);
-	free(original);
 	return true;
 }

@@ -4,7 +4,7 @@
 #include <string>
 
 namespace hamming {
-    int compute(std::string strA, std::string strB);
+    std::string::size_type compute(std::string_view strA, std::string_view strB);
 }  // namespace hamming
 
 #endif // HAMMING_H
