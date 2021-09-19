@@ -1,9 +1,6 @@
 #include "isogram.h"
-#include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include <time.h>
-#include <stdio.h>
 
 bool is_isogram(const char phrase[])
 {
@@ -12,20 +9,16 @@ bool is_isogram(const char phrase[])
 		return false;
 	}
 
-	if (strlen(phrase) == 0)
+	if (*phrase == '\0')
 	{
 		return true;
 	}
 
-	int appearances[26];
-	memset(appearances, 0, sizeof(appearances));
-
-	int length = strlen(phrase);
+	int appearances[26] = {0};
 	char symbol;
 
-	for (int i = 0; i < length; ++i)
-	{
-		symbol = tolower((unsigned char)phrase[i]);
+	do {
+		symbol = tolower((unsigned char)(*phrase));
 
 		if (!isalpha((unsigned char)symbol))
 		{
@@ -36,7 +29,7 @@ bool is_isogram(const char phrase[])
 		{
 			return false;
 		}
-	}
+	} while(*phrase++);
 
 	return true;
 }

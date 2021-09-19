@@ -12,7 +12,7 @@ namespace hamming {
             throw std::domain_error("Sizes are not equal");
         }
 
-        int distance = 0;
+        std::string::size_type distance = 0;
 
         for (auto iterA = strA.begin(), iterB = strB.begin(); iterA != strA.end(); ++iterA, ++iterB)
         {
